@@ -3,7 +3,7 @@ import {State} from "../state";
 
 const RememberFunction: ChatFunction = {
     name: "remember",
-    description: "Remember something in the context.",
+    description: "Add something important to the short-term memory.",
     fn: (state: State, {keyToRemember, valueToRemember}: ChatFunctionParams) => {
         state.context[keyToRemember] = valueToRemember;
     },
@@ -19,7 +19,7 @@ const RememberFunction: ChatFunction = {
 
 const ForgetFunction: ChatFunction = {
     name: "forget",
-    description: "Forget something in the context.",
+    description: "Remove something from the short-term memory.",
     fn: (state: State, {keyToForget}: ChatFunctionParams) => {
         delete state.context[keyToForget];
     },
