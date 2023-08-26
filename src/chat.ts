@@ -19,6 +19,9 @@ interface SystemMessageVariables {
     context: Context
 }
 
+// Read contents of system_prompt.txt and store in a variable
+const SYSTEM_PROMPT = require("fs").readFileSync("./src/system_prompt.txt", "utf-8");
+
 export async function handleTrigger(client: OpenAI, state: State, trigger: Trigger) {
     const systemMessageVariables: SystemMessageVariables = {
         trigger,
@@ -33,10 +36,7 @@ export async function handleTrigger(client: OpenAI, state: State, trigger: Trigg
             {
                 role: "system",
                 content: JSON.stringify({
-                    instructions: "You are an assistant capable of executing certain functions. Your task is to look at " +
-                        "the trigger given to you in the system message and choose a function based on its type. If " +
-                        "the trigger is a user_input, then you should send a message back to the user using the " +
-                        "send_message function, if no other function calls are applicable.",
+                    instructions: SYSTEM_PROMPT,
                     variables: systemMessageVariables
                 }, null, 0),
             },
