@@ -1,5 +1,7 @@
+export type Context = {[context_key: string]: string};
+
 export interface State {
-    context: {[context_key: string]: string};
+    context: Context;
 }
 
 export function getDefaultState(): State {
